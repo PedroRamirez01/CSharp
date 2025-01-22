@@ -60,7 +60,7 @@ namespace CSharpHelloWorld
             {
                 Console.WriteLine(item.Key + " - " + item.Value);   // item.Key es la clave y item.Value es el valor
             }
-            Console.WriteLine("Bucle foreach - HashSet");   
+            Console.WriteLine("Bucle foreach - HashSet");
             foreach (var item in mySet)
             {
                 Console.WriteLine(item);    // solo se imprimirá una vez el valor "Hola"
@@ -68,32 +68,40 @@ namespace CSharpHelloWorld
 
             // Funciones
             Console.WriteLine(Multiplicacion(5, 10));
-            
-            Persona persona = new Persona("Juan", 30);
+
+            // Clases
+            Persona persona = new("Juan", 2001); // or new Persona("Juan", 30);
+            Console.WriteLine(persona.Nombre);
+            Console.WriteLine(persona.AnioNacimiento);
+            //Console.WriteLine(persona.Edad);  // no es posible acceder a la edad, ya que es privada
             persona.Saludar();
         }
 
-        static int Multiplicacion(int num1, int num2)
+        static int Multiplicacion(int num1, int num2)   // Función que recibe dos parámetros y retorna un valor
         {
             int resultado = num1 * num2;
             return resultado;
         }
+
+        public class Persona    // Clase
+        {
+            public string Nombre { get; set; }
+            public int AnioNacimiento { get; set; }
+            private int Edad { set; get; }
+
+            public Persona(string nombre, int anioNacimiento)
+            {
+                Nombre = nombre;
+                AnioNacimiento = anioNacimiento;
+                Edad = DateTime.Now.Year - AnioNacimiento;
+            }
+
+            public void Saludar()
+            {
+                Console.WriteLine("Hola, mi nombre es " + Nombre + " y tengo " + Edad + " años");
+            }
+        }
     }
 }
 
-public class Persona
-{
-    public string Nombre { get; set; }
-    public int Edad { get; set; }
 
-    public Persona(string nombre, int edad)
-    {
-        Nombre = nombre;
-        Edad = edad;
-    }
-
-    public void Saludar()
-    {
-        Console.WriteLine("Hola, mi nombre es " + Nombre);
-    }
-}
