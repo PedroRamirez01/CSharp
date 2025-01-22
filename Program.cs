@@ -28,7 +28,7 @@ namespace CSharpHelloWorld
             Console.WriteLine(myChar);
             Console.WriteLine(myDynamic);
 
-            // Arreglos
+            // Colecciones
             var myArrayInt = new int[5] { 1, 2, 3, 4, 5 }; // Array es un tipo de dato que almacena una colección de elementos
             var myArrayString = new string[5] { "value1", "value2", "value3", "value4", "value5" }; // Array es un tipo de dato que almacena una colección de elementos
             var myDictionary = new Dictionary<string, string>   // Dictionary es un tipo de dato que almacena pares de clave-valor
@@ -45,17 +45,55 @@ namespace CSharpHelloWorld
             Console.WriteLine(mySet.Count); // retorna valor 3, ya que el valor "Hola" se repite
 
             // Bucles
-            Console.WriteLine("Bucle For");
-            for (int i = 0; i < 10; i++)
+            Console.WriteLine("Bucle for");
+            for (int i = 0; i < 10; i++)    // for es un bucle que se ejecuta un número determinado de veces
             {
                 Console.WriteLine(i);
             }
+            Console.WriteLine("Bucle foreach");
+            foreach (var item in myArrayString) // foreach es un bucle que se ejecuta por cada elemento de una colección
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("Bucle foreach - dictionary");
+            foreach (var item in myDictionary)
+            {
+                Console.WriteLine(item.Key + " - " + item.Value);   // item.Key es la clave y item.Value es el valor
+            }
+            Console.WriteLine("Bucle foreach - HashSet");   
+            foreach (var item in mySet)
+            {
+                Console.WriteLine(item);    // solo se imprimirá una vez el valor "Hola"
+            }
+
+            // Funciones
+            Console.WriteLine(Multiplicacion(5, 10));
+            
+            Persona persona = new Persona("Juan", 30);
+            persona.Saludar();
         }
 
-        public int Multiplicacion(int num1, int num2)
+        static int Multiplicacion(int num1, int num2)
         {
             int resultado = num1 * num2;
             return resultado;
         }
+    }
+}
+
+public class Persona
+{
+    public string Nombre { get; set; }
+    public int Edad { get; set; }
+
+    public Persona(string nombre, int edad)
+    {
+        Nombre = nombre;
+        Edad = edad;
+    }
+
+    public void Saludar()
+    {
+        Console.WriteLine("Hola, mi nombre es " + Nombre);
     }
 }
